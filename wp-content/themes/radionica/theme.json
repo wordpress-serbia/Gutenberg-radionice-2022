@@ -1,0 +1,55 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 2,
+  "settings": {
+    "color": {
+      "defaultPalette": false,
+      "custom": false,
+      "palette": [
+        {
+          "color": "#000000",
+          "name": "Black",
+          "slug": "black"
+        },
+        {
+          "color": "#f3f3f3",
+          "name": "Skoro bela",
+          "slug": "skoro-bela"
+        },
+        {
+          "color": "red",
+          "name": "Crvena",
+          "slug": "crvena"
+        }
+      ]
+    },
+    "typography": {
+      "customFontSize": false,
+      "fontSizes": [
+        {
+          "fluid":true,
+          "name": "Mali",
+          "size": "16px",
+          "slug": "mali"
+        },
+        {
+          "fluid":true,
+          "name": "Veliki",
+          "size": "48px",
+          "slug": "veliki"
+        }
+      ]
+    }
+  },
+  "styles": {
+    "blocks": {
+      "core/heading": {
+        "typography": {
+          "fontSize": "clamp(var(--wp--preset--font-size--mali), 4vw, var(--wp--preset--font-size--veliki))"
+        }
+      }
+    }
+  },
+  "customTemplates": {},
+  "templateParts": {}
+}
