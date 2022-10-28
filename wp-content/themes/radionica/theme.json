@@ -1,6 +1,21 @@
 {
   "$schema": "https://schemas.wp.org/trunk/theme.json",
   "version": 2,
+  "templateParts": [
+    {
+      "name": "header",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "area": "footer"
+    },
+    {
+      "name": "custom",
+      "title": "Custom",
+      "area": "header"
+    }
+  ],
   "settings": {
     "color": {
       "defaultPalette": false,
@@ -25,6 +40,7 @@
     },
     "typography": {
       "customFontSize": false,
+      "fluid": true,
       "fontSizes": [
         {
           "fluid":true,
@@ -38,6 +54,18 @@
           "size": "48px",
           "slug": "veliki"
         }
+      ],
+      "fontFamilies": [
+        {
+          "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+          "slug": "helvetica-arial",
+          "name": "Helvetica or Arial"
+        },
+        {
+          "fontFamily": "Island Moments, cursive",
+          "slug": "island-moments",
+          "name": "Island Moments"
+        }
       ]
     }
   },
@@ -50,6 +78,5 @@
       }
     }
   },
-  "customTemplates": {},
-  "templateParts": {}
+  "customTemplates": {}
 }
