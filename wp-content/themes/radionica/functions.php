@@ -14,6 +14,15 @@ add_action( 'wp_enqueue_scripts', 'radionica_parent_theme_enqueue_styles' );
  */
 function radionica_parent_theme_enqueue_styles() {
 	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/style.css' );
+	// Add custom fonts, used in the main stylesheet.
+	wp_enqueue_style('radionica-fonts', radionica_fonts_url(), array(), null);
+}
+
+add_action('enqueue_block_assets', 'radionica_enqueue_block_assets');
+
+function radionica_enqueue_block_assets() {
+	// Add custom fonts, used in the main stylesheet.
+	wp_enqueue_style('radionica-fonts', radionica_fonts_url(), array(), null);
 }
 
 if (!function_exists('radionica_support')) :
@@ -38,3 +47,47 @@ if (!function_exists('radionica_support')) :
 endif;
 
 add_action('after_setup_theme', 'radionica_support');
+
+/**
+ * Register custom fonts.
+ */
+function radionica_fonts_url()
+{
+	$fonts_url = '';
+
+	$font_families = array();
+
+	$font_families[] = 'Island Moments:400';
+
+	$query_args = array(
+		'family'  => urlencode(implode('|', $font_families)),
+		'subset'  => urlencode('latin,latin-ext'),
+		'display' => urlencode('fallback'),
+	);
+
+	$fonts_url = add_query_arg($query_args, 'https://fonts.googleapis.com/css');
+
+	return esc_url_raw($fonts_url);
+}
+
+/**
+ * Add preconnect for Google Fonts.
+ *
+ * @since Twenty Seventeen 1.0
+ *
+ * @param array  $urls          URLs to print for resource hints.
+ * @param string $relation_type The relation type the URLs are printed.
+ * @return array URLs to print for resource hints.
+ */
+function radionica_resource_hints($urls, $relation_type)
+{
+	if (wp_style_is('radionica-fonts', 'queue') && 'preconnect' === $relation_type) {
+		$urls[] = array(
+			'href' => 'https://fonts.gstatic.com',
+			'crossorigin',
+		);
+	}
+
+	return $urls;
+}
+add_filter('wp_resource_hints', 'radionica_resource_hints', 10, 2);

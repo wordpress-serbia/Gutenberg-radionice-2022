@@ -25,9 +25,22 @@
     },
     "typography": {
       "customFontSize": false,
+      "fluid": true,
+      "fontFamilies": [
+        {
+          "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+          "slug": "helvetica-arial",
+          "name": "Helvetica or Arial"
+        },
+        {
+          "fontFamily": "Island Moments, cursive",
+          "slug": "island-moments",
+          "name": "Island Moments"
+        }
+      ],
       "fontSizes": [
         {
-          "fluid":true,
+          "fluid": true,
           "name": "Mali",
           "size": "16px",
           "slug": "mali"
@@ -50,6 +63,16 @@
       }
     }
   },
-  "customTemplates": {},
-  "templateParts": {}
+  "templateParts": [
+    {
+      "name": "header",
+      "title": "Zaglavlje",
+      "area": "header"
+    },
+    {
+      "name": "footer",
+      "title": "Podnozje",
+      "area": "footer"
+    }
+  ]
 }
