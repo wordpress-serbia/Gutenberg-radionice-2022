@@ -93,3 +93,5 @@ function radionica_resource_hints($urls, $relation_type)
 	return $urls;
 }
 add_filter('wp_resource_hints', 'radionica_resource_hints', 10, 2);
+
+include_once get_template_directory() . '/inc/block-styles.php';
