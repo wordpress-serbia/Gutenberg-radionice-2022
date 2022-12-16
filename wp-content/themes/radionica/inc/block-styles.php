@@ -21,3 +21,12 @@ register_block_style(
 		'inline_style' => '.wp-block-heading.is-style-allcaps-heading { text-transform: uppercase; }',
 	)
 );
+wp_register_style( 'radionica-list-block-style', get_template_directory_uri() . '/src/block-styles/core-list.css');
+register_block_style(
+	'core/list',
+	array(
+		'name'         => 'list-background',
+		'label'        => __( 'List Background', 'textdomain' ),
+		'style_handle' => 'radionica-list-block-style',
+	)
+);
