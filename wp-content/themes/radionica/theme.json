@@ -1,93 +1,93 @@
 {
-  "$schema": "https://schemas.wp.org/trunk/theme.json",
-  "version": 2,
-  "settings": {
-    "color": {
-      "defaultPalette": false,
-      "custom": false,
-      "palette": [
-        {
-          "color": "#000000",
-          "name": "Black",
-          "slug": "black"
-        },
-        {
-          "color": "#f3f3f3",
-          "name": "Skoro bela",
-          "slug": "skoro-bela"
-        },
-        {
-          "color": "red",
-          "name": "Crvena",
-          "slug": "crvena"
-        }
-      ]
-    },
-    "typography": {
-      "fontWeight": false,
-      "customFontSize": false,
-      "fluid": true,
-      "letterSpacing": false,
-      "fontFamilies": [
-        {
-          "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
-          "slug": "helvetica-arial",
-          "name": "Helvetica or Arial"
-        },
-        {
-          "fontFamily": "Island Moments, cursive",
-          "slug": "island-moments",
-          "name": "Island Moments"
-        }
-      ],
-      "fontSizes": [
-        {
-          "name": "Mali",
-          "size": "16px",
-          "slug": "mali",
-          "fluid": {
-            "min": "16px",
-            "max": "32px"
-          }
-        },
-        {
-          "fluid":{
-            "min": "26px",
-            "max": "56px"
-          },
-          "name": "Veliki",
-          "size": "36px",
-          "slug": "veliki"
-        }
-      ]
-    },
-    "blocks": {
-      "core/paragraph": {
-        "typography": {
-          "letterSpacing": false
-        }
-      }
-    }
-  },
-  "styles": {
-    "blocks": {
-      "core/heading": {
-        "typography": {
-          "fontSize": "var(--wp--preset--font-size--veliki)"
-        }
-      }
-    }
-  },
-  "templateParts": [
-    {
-      "name": "header",
-      "title": "Zaglavlje",
-      "area": "header"
-    },
-    {
-      "name": "footer",
-      "title": "Podnozje",
-      "area": "footer"
-    }
-  ]
+	"$schema": "https://schemas.wp.org/trunk/theme.json",
+	"version": 2,
+	"settings": {
+		"color": {
+			"defaultPalette": false,
+			"custom": false,
+			"palette": [
+				{
+					"color": "#000000",
+					"name": "Black",
+					"slug": "black"
+				},
+				{
+					"color": "#f3f3f3",
+					"name": "Skoro bela",
+					"slug": "skoro-bela"
+				},
+				{
+					"color": "red",
+					"name": "Crvena",
+					"slug": "crvena"
+				}
+			]
+		},
+		"typography": {
+			"fontWeight": false,
+			"customFontSize": false,
+			"fluid": true,
+			"letterSpacing": false,
+			"fontFamilies": [
+				{
+					"fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
+					"slug": "helvetica-arial",
+					"name": "Helvetica or Arial"
+				},
+				{
+					"fontFamily": "Island Moments, cursive",
+					"slug": "island-moments",
+					"name": "Island Moments"
+				}
+			],
+			"fontSizes": [
+				{
+					"name": "Mali",
+					"size": "16px",
+					"slug": "mali",
+					"fluid": {
+						"min": "16px",
+						"max": "32px"
+					}
+				},
+				{
+					"fluid": {
+						"min": "26px",
+						"max": "56px"
+					},
+					"name": "Veliki",
+					"size": "36px",
+					"slug": "veliki"
+				}
+			]
+		},
+		"blocks": {
+			"core/paragraph": {
+				"typography": {
+					"letterSpacing": false
+				}
+			}
+		}
+	},
+	"styles": {
+		"blocks": {
+			"core/heading": {
+				"typography": {
+					"fontSize": "var(--wp--preset--font-size--veliki)"
+				}
+			}
+		}
+	},
+	"templateParts": [
+		{
+			"name": "header",
+			"title": "Zaglavlje",
+			"area": "header"
+		},
+		{
+			"name": "footer",
+			"title": "Podnozje",
+			"area": "footer"
+		}
+	]
 }
