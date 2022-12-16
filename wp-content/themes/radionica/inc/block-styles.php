@@ -12,3 +12,12 @@ function radionica_enqueue_block_editor_assets() {
 	);
 }
 add_action( 'enqueue_block_editor_assets', 'radionica_enqueue_block_editor_assets' );
+
+register_block_style(
+	'core/heading',
+	array(
+		'name'         => 'allcaps-heading',
+		'label'        => __( 'Caps Heading', 'textdomain' ),
+		'inline_style' => '.wp-block-heading.is-style-allcaps-heading { text-transform: uppercase; }',
+	)
+);
