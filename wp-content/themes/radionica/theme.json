@@ -24,8 +24,10 @@
       ]
     },
     "typography": {
+      "fontWeight": false,
       "customFontSize": false,
       "fluid": true,
+      "letterSpacing": false,
       "fontFamilies": [
         {
           "fontFamily": "Helvetica Neue, Helvetica, Arial, sans-serif",
@@ -40,25 +42,38 @@
       ],
       "fontSizes": [
         {
-          "fluid": true,
           "name": "Mali",
           "size": "16px",
-          "slug": "mali"
+          "slug": "mali",
+          "fluid": {
+            "min": "16px",
+            "max": "32px"
+          }
         },
         {
-          "fluid":true,
+          "fluid":{
+            "min": "26px",
+            "max": "56px"
+          },
           "name": "Veliki",
-          "size": "48px",
+          "size": "36px",
           "slug": "veliki"
         }
       ]
+    },
+    "blocks": {
+      "core/paragraph": {
+        "typography": {
+          "letterSpacing": false
+        }
+      }
     }
   },
   "styles": {
     "blocks": {
       "core/heading": {
         "typography": {
-          "fontSize": "clamp(var(--wp--preset--font-size--mali), 4vw, var(--wp--preset--font-size--veliki))"
+          "fontSize": "var(--wp--preset--font-size--veliki)"
         }
       }
     }
