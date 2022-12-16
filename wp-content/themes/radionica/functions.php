@@ -13,7 +13,7 @@ add_action( 'wp_enqueue_scripts', 'radionica_parent_theme_enqueue_styles' );
  * Enqueue scripts and styles.
  */
 function radionica_parent_theme_enqueue_styles() {
-	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/style.css' );
+	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/build/index.css' );
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style('radionica-fonts', radionica_fonts_url(), array(), null);
 }
@@ -21,6 +21,8 @@ function radionica_parent_theme_enqueue_styles() {
 add_action('enqueue_block_assets', 'radionica_enqueue_block_assets');
 
 function radionica_enqueue_block_assets() {
+	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/build/style-index.css' );
+
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style('radionica-fonts', radionica_fonts_url(), array(), null);
 }
