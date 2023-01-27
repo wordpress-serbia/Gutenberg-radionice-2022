@@ -13,18 +13,25 @@ add_action( 'wp_enqueue_scripts', 'radionica_parent_theme_enqueue_styles' );
  * Enqueue scripts and styles.
  */
 function radionica_parent_theme_enqueue_styles() {
-	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/build/index.css' );
+	wp_enqueue_style( 'radionica-style-frontend', get_template_directory_uri() . '/build/index.css' );
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style('radionica-fonts', radionica_fonts_url(), array(), null);
 }
 
-add_action('enqueue_block_assets', 'radionica_enqueue_block_assets');
+add_action('enqueue_block_editor_assets', 'radionica_enqueue_block_assets');
 
 function radionica_enqueue_block_assets() {
-	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/build/style-index.css' );
+	wp_enqueue_style( 'radionica-style', get_template_directory_uri() . '/build/style-editor.css' );
 
 	// Add custom fonts, used in the main stylesheet.
 	wp_enqueue_style('radionica-fonts', radionica_fonts_url(), array(), null);
+
+	wp_enqueue_script(
+		'radionica-editor-js',
+		get_template_directory_uri() . '/build/editor.js',
+		array('wp-blocks', 'wp-edit-post'),
+		filemtime(get_template_directory() . '/build/editor.js')
+	);
 }
 
 if (!function_exists('radionica_support')) :
@@ -44,6 +51,9 @@ if (!function_exists('radionica_support')) :
 
 		// Enqueue editor styles.
 		add_editor_style('style.css');
+
+		add_filter('should_load_separate_core_block_assets', '__return_true');
+
 	}
 
 endif;
@@ -93,3 +103,5 @@ function radionica_resource_hints($urls, $relation_type)
 	return $urls;
 }
 add_filter('wp_resource_hints', 'radionica_resource_hints', 10, 2);
+
+include_once get_template_directory() . '/inc/block-styles.php';
