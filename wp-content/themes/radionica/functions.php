@@ -105,3 +105,71 @@ function radionica_resource_hints($urls, $relation_type)
 add_filter('wp_resource_hints', 'radionica_resource_hints', 10, 2);
 
 include_once get_template_directory() . '/inc/block-styles.php';
+include_once get_template_directory() . '/inc/block-patterns.php';
+
+function radionica_comment_form_before() {
+	the_ID();
+}
+// add_action('comment_form_before', 'radionica_comment_form_before' );
+
+function radionica_the_excerpt( $excerpt, $post ) {
+	return $excerpt . $post->ID;
+}
+// add_filter('get_the_excerpt', 'radionica_the_excerpt', 10, 2 );
+
+function radionica_register_block_type_args($args ) {
+
+	if ('core/post-excerpt' == $args['name'] ) {
+		$args['render_callback'] = 'radionica_render_block_core_post_excerpt';
+	}
+
+	return $args;
+}
+add_filter('register_block_type_args', 'radionica_register_block_type_args' );
+
+function radionica_render_block_core_post_excerpt($attributes, $content, $block) {
+	if (!isset($block->context['postId'])) {
+		return '';
+	}
+
+	$excerpt = get_the_excerpt();
+
+	if (empty($excerpt)) {
+		return '';
+	}
+
+	$more_text           = !empty($attributes['moreText']) ? '<a class="wp-block-post-excerpt__more-link" href="' . esc_url(get_the_permalink($block->context['postId'])) . '">' . wp_kses_post($attributes['moreText']) . '</a>' : '';
+	$filter_excerpt_more = function ($more) use ($more_text) {
+		return empty($more_text) ? $more : '';
+	};
+	/**
+	 * Some themes might use `excerpt_more` filter to handle the
+	 * `more` link displayed after a trimmed excerpt. Since the
+	 * block has a `more text` attribute we have to check and
+	 * override if needed the return value from this filter.
+	 * So if the block's attribute is not empty override the
+	 * `excerpt_more` filter and return nothing. This will
+	 * result in showing only one `read more` link at a time.
+	 */
+	add_filter('excerpt_more', $filter_excerpt_more);
+	$classes = '';
+	if (isset($attributes['textAlign'])) {
+		$classes .= "has-text-align-{$attributes['textAlign']}";
+	}
+	$wrapper_attributes = get_block_wrapper_attributes(array('class' => $classes));
+
+	$content               = '<p class="wp-block-post-excerpt__excerpt">' . $excerpt;
+	$show_more_on_new_line = !isset($attributes['showMoreOnNewLine']) || $attributes['showMoreOnNewLine'];
+	if ($show_more_on_new_line && !empty($more_text)) {
+		$content .= '</p><p class="wp-block-post-excerpt__more-text">' . $more_text . '</p>';
+	} else {
+		$content .= " $more_text</p>";
+	}
+
+	if (is_home()) {
+		$content .= '<div>' . get_the_ID() . '</div>';
+	}
+
+	remove_filter('excerpt_more', $filter_excerpt_more);
+	return sprintf('<div %1$s>%2$s</div>', $wrapper_attributes, $content);
+}
