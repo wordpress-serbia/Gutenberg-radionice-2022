@@ -122,10 +122,22 @@ function radionica_register_block_type_args($args ) {
 	if ('core/post-excerpt' == $args['name'] ) {
 		$args['render_callback'] = 'radionica_render_block_core_post_excerpt';
 	}
+	if ('core/paragraph' == $args['name']) {
+		$args['render_callback'] = 'radionica_render_block_core_paragraph';
+	}
 
 	return $args;
 }
 add_filter('register_block_type_args', 'radionica_register_block_type_args' );
+
+function radionica_render_block_core_paragraph($attributes, $content, $block) {
+
+	if ( $attributes['isLightbox'] ) {
+		return $content . __('Is lightbox', 'radionica');
+	}
+
+	return $content;
+}
 
 function radionica_render_block_core_post_excerpt($attributes, $content, $block) {
 	if (!isset($block->context['postId'])) {
