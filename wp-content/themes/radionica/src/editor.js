@@ -9,3 +9,4 @@ import './style.scss';
 
 import './block-styles.js';
 import './extentions/core-paragraph.js';
+import './plugin/post-meta.js';

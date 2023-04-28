@@ -29,7 +29,7 @@ function radionica_enqueue_block_assets() {
 	wp_enqueue_script(
 		'radionica-editor-js',
 		get_template_directory_uri() . '/build/editor.js',
-		array('wp-blocks', 'wp-edit-post'),
+		array('wp-blocks', 'wp-edit-post','wp-plugins', 'wp-element', 'wp-components', 'wp-data'),
 		filemtime(get_template_directory() . '/build/editor.js')
 	);
 }
@@ -106,6 +106,7 @@ add_filter('wp_resource_hints', 'radionica_resource_hints', 10, 2);
 
 include_once get_template_directory() . '/inc/block-styles.php';
 include_once get_template_directory() . '/inc/block-patterns.php';
+include_once get_template_directory() . '/inc/post-meta.php';
 
 function radionica_comment_form_before() {
 	the_ID();
